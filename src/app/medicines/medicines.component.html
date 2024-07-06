@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="search-container" *ngIf="filteredMedicines.length > 0 || filteredCategories.length > 0">
+    <input type="text" [formControl]="searchControl" class="form-control" placeholder="Search" />
+  </div>
+
+  <div class="container">
+
+    <div class="boxes" id="category" *ngIf="!selectedCategory">
+      <div class="row justify-content-center">
+        <div *ngFor="let category of filteredCategories" class="col-md-4 mb-4">
+          <div class="box-item card" (click)="filterByCategory(category)">
+            <div class="image-container">
+              <img [src]="getCategoryImage(category)" alt="{{ category }}" class="box-image">
+            </div>
+            <div class="card-label">
+              <h5 class="card-title">{{ category }}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="filteredCategories.length === 0">
+        <div class="col-md-12 text-center">
+          No categories found.
+        </div>
+      </div>
+</div>
+ <!-- Medicines list -->
+ <div *ngIf="selectedCategory && filteredMedicines.length > 0; else noResults" class="boxes" id="medicine">
+  <div class="row justify-content-center">
+    <div *ngFor="let medicine of filteredMedicines" class="col-md-4 mb-4">
+      <div class="box-item card clickable-box" (click)="navigateToMedicineDetails(medicine._id)">
+        <div class="image-container">
+          <img [src]="medicine.imageUrl" alt="{{ medicine.name }}" class="box-image">
+        </div>
+        <div class="card-label">
+          <h5 class="card-title">{{ medicine.name }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- No results template -->
+<ng-template #noResults>
+  <p *ngIf="selectedCategory" style="color: black;">No medicines found with this name.</p>
+</ng-template>
+</div>
+</div>

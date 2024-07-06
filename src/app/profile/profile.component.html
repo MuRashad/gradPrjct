@@ -1,0 +1,30 @@
+<div class="center-container">
+  <div class="profile-container">
+    <div class="profile-header">
+      <div class="profile-photo">
+        <label for="fileInput" class="profile-photo-label">
+          <img *ngIf="userProfilePhoto" [src]="userProfilePhoto" alt="User Photo" class="profile-image" />
+          <span *ngIf="!userProfilePhoto" class="placeholder-text">Upload</span>
+          <input type="file" id="fileInput" accept="image/*" (change)="onPhotoSelected($event)" />
+        </label>
+      </div>
+      <div class="profile-details">
+        <div class="profile-item">
+          <label>User ID:</label>
+          <p>{{ userId }}</p>
+        </div>
+        <div class="profile-item">
+          <label>User Type:</label>
+          <p>{{ userType }}</p>
+        </div>
+        <div class="profile-item">
+          <label>Username:</label>
+          <p>{{ username }}</p>
+        </div>
+        <div class="profile-item">
+          <!-- Edit and Save buttons -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
